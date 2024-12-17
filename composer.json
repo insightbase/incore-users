@@ -1,0 +1,32 @@
+{
+    "version": "0.0.1",
+    "name": "incore/users",
+    "description": "List of users and roles for inCore system",
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "authors": [
+        {
+            "name": "insight base s.r.o.",
+            "email": "info@insightbase.cz"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">= 8.2",
+        "nette/utils": "^4.0",
+        "nette/application": "^3.2",
+        "incore/core": "dev-master",
+        "incore/datagrid": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/vsek/incore-core.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/vsek/incore-datagrid.git"
+        }
+    ]
+}

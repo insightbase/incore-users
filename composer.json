@@ -22,11 +22,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/vsek/incore-core.git"
+            "url": "https://github.com/insightbase/incore-core"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/vsek/incore-datagrid.git"
+            "url": "https://github.com/insightbase/incore-datagrid"
         }
     ]
 }

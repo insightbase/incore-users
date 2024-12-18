@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2610a6cdddf82d51691fe94b3c483ac",
+    "content-hash": "8422a87580d9b16c62a2e0dddc221cda",
     "packages": [
         {
             "name": "contributte/console",
@@ -920,13 +920,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:vsek/incore-core.git",
-                "reference": "e27b3a0245d64a09acb7b6a97a3b959f58942f1a"
+                "url": "git@github.com:insightbase/incore-core.git",
+                "reference": "e81c3f5c86fc652f4cc2a2d93dc3f7006a8a346a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsek/incore-core/zipball/e27b3a0245d64a09acb7b6a97a3b959f58942f1a",
-                "reference": "e27b3a0245d64a09acb7b6a97a3b959f58942f1a",
+                "url": "https://api.github.com/repos/insightbase/incore-core/zipball/e81c3f5c86fc652f4cc2a2d93dc3f7006a8a346a",
+                "reference": "e81c3f5c86fc652f4cc2a2d93dc3f7006a8a346a",
                 "shasum": ""
             },
             "require": {
@@ -964,23 +964,23 @@
             ],
             "description": "Main classes for inCore system",
             "support": {
-                "source": "https://github.com/vsek/incore-core/tree/master",
-                "issues": "https://github.com/vsek/incore-core/issues"
+                "source": "https://github.com/insightbase/incore-core/tree/master",
+                "issues": "https://github.com/insightbase/incore-core/issues"
             },
-            "time": "2024-12-12T13:01:31+00:00"
+            "time": "2024-12-17T10:12:33+00:00"
         },
         {
             "name": "incore/datagrid",
-            "version": "dev-main",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:vsek/incore-datagrid.git",
-                "reference": "d9ee5b9ce7ad768dab2ec2eb284033a92b5dd513"
+                "url": "git@github.com:insightbase/incore-datagrid.git",
+                "reference": "dd16945d32424021b60b3a99ef9b3d6f194b7f65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vsek/incore-datagrid/zipball/d9ee5b9ce7ad768dab2ec2eb284033a92b5dd513",
-                "reference": "d9ee5b9ce7ad768dab2ec2eb284033a92b5dd513",
+                "url": "https://api.github.com/repos/insightbase/incore-datagrid/zipball/dd16945d32424021b60b3a99ef9b3d6f194b7f65",
+                "reference": "dd16945d32424021b60b3a99ef9b3d6f194b7f65",
                 "shasum": ""
             },
             "require": {
@@ -1003,10 +1003,10 @@
             ],
             "description": "Datagrid for inCore system",
             "support": {
-                "source": "https://github.com/vsek/incore-datagrid/tree/main",
-                "issues": "https://github.com/vsek/incore-datagrid/issues"
+                "source": "https://github.com/insightbase/incore-datagrid/tree/master",
+                "issues": "https://github.com/insightbase/incore-datagrid/issues"
             },
-            "time": "2024-12-12T12:44:31+00:00"
+            "time": "2024-12-17T10:13:48+00:00"
         },
         {
             "name": "latte/latte",

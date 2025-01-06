@@ -7,5 +7,8 @@
 {block content}
 
     {control grid}
-
+    {embed basicModal, 'form-new'}
+        {block title}{_'Nový uživatel'}{/block}
+        {block body}{embed basicForm, formNew}{/embed}{/block}
+    {/embed}
 {/block}

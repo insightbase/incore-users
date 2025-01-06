@@ -43,6 +43,7 @@ final class UserPresenter extends Presenter
     {
         parent::startup();
         $this->submenuFactory->addMenu($this->translator->translate('Přidat uživatele'), $this->link('new'))
+            ->setModalId('form-new')
             ->setIsPrimary(true);
     }
 

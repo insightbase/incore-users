@@ -16,17 +16,17 @@
         "php": ">= 8.2",
         "nette/utils": "^4.0",
         "nette/application": "^3.2",
-        "incore/core": "dev-master",
-        "incore/datagrid": "dev-master"
+        "incore/core": "^0",
+        "incore/datagrid": "^0"
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/insightbase/incore-core"
+            "type": "path",
+            "url": "../incore-core"
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/insightbase/incore-datagrid"
+            "type": "path",
+            "url": "../incore-datagrid"
         }
     ]
 }

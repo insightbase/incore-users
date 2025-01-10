@@ -42,7 +42,7 @@ final class UserPresenter extends Presenter
     protected function startup():void
     {
         parent::startup();
-        $this->submenuFactory->addMenu($this->translator->translate('Přidat uživatele'), $this->link('new'))
+        $this->submenuFactory->addMenu($this->translator->translate('menu_newUser'), $this->link('new'))
             ->setModalId('form-new')
             ->setIsPrimary(true);
     }
@@ -50,7 +50,7 @@ final class UserPresenter extends Presenter
     private function exist(int $id):void{
         $user = $this->userModel->get($id);
         if($user === null){
-            $this->flashMessage($this->translator->translate('Uživatel nebyl nalezen'), 'error');
+            $this->flashMessage($this->translator->translate('flash_userNotFound'), 'error');
             $this->redirect('default');
         }
         $this->user = $user;
@@ -66,7 +66,7 @@ final class UserPresenter extends Presenter
         $form = $this->formFactory->createEdit($this->user);
         $form->onSuccess[] = function(Form $form, FormEditData $values):void{
             $this->userFacade->update($this->user, $values);
-            $this->flashMessage($this->translator->translate('Uživatel upraven'));
+            $this->flashMessage($this->translator->translate('flash_userUpdated'));
             $this->redirect('default');
         };
         return $form;
@@ -77,7 +77,7 @@ final class UserPresenter extends Presenter
         $form = $this->formFactory->createNew();
         $form->onSuccess[] = function(Form $form, FormNewData $values):void{
             $this->userFacade->create($values);
-            $this->flashMessage($this->translator->translate('Uživatel vytvořen'));
+            $this->flashMessage($this->translator->translate('flash_userCreated'));
             $this->redirect('default');
         };
         return $form;

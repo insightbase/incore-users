@@ -17,9 +17,9 @@ class FormFactory
     private ?ActiveRow $user = null;
 
     public function __construct(
-        private \App\UI\Accessory\Form\FormFactory $formFactory,
-        private Translator                         $translator,
-        private User $userModel,
+        private readonly \App\UI\Accessory\Form\FormFactory $formFactory,
+        private readonly Translator                         $translator,
+        private readonly User                               $userModel,
     )
     {
     }
@@ -37,12 +37,12 @@ class FormFactory
     private function createBase():Form{
         $form = $this->formFactory->create();
 
-        $form->addText('firstname', $this->translator->translate('Jméno'))
+        $form->addText('firstname', $this->translator->translate('input_firstname'))
             ->setRequired();
-        $form->addText('lastname', $this->translator->translate('Příjmení'))
+        $form->addText('lastname', $this->translator->translate('input_lastname'))
             ->setRequired();
-        $form->addEmail('email', $this->translator->translate('Email'))
-            ->addRule([$this, 'validateEmail'], $this->translator->translate('Takový email v systému už existuje'))
+        $form->addEmail('email', $this->translator->translate('input_email'))
+            ->addRule([$this, 'validateEmail'], $this->translator->translate('error_emailAlreadyExists'))
             ->setRequired();
 
         return $form;
@@ -51,9 +51,9 @@ class FormFactory
     public function createNew():Form
     {
         $form = $this->createBase();
-        $form->addPassword('password', $this->translator->translate('Heslo'))
+        $form->addPassword('password', $this->translator->translate('input_password'))
             ->setRequired();
-        $form->addSubmit('send', $this->translator->translate('Vytvořit'));
+        $form->addSubmit('send', $this->translator->translate('submit_create'));
 
         return $form;
     }
@@ -67,7 +67,7 @@ class FormFactory
         $this->user = $userEntity;
 
         $form = $this->createBase();
-        $form->addSubmit('send', $this->translator->translate('Upravit'));
+        $form->addSubmit('send', $this->translator->translate('submit_update'));
 
         $form->setDefaults([
             'firstname' => $userEntity->firstname,

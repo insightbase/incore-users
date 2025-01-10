@@ -21,18 +21,18 @@ readonly class DataGridEntityFactory
     {
         $dataGridEntity = new DataGridEntity();
         $dataGridEntity
-            ->addColumn(new ColumnEntity('id', $this->translator->translate('ID')))
-            ->addColumn((new ColumnEntity('firstname', $this->translator->translate('Jméno'), true))
+            ->addColumn(new ColumnEntity('id', $this->translator->translate('id')))
+            ->addColumn((new ColumnEntity('firstname', $this->translator->translate('column_firstname'), true))
                 ->setEnableSearchGlobal(true))
-            ->addColumn((new ColumnEntity('lastname', $this->translator->translate('Příjmení')))
+            ->addColumn((new ColumnEntity('lastname', $this->translator->translate('column_lastname')))
                 ->setEnableSearchGlobal(true))
-            ->addColumn((new ColumnEntity('email', $this->translator->translate('Email')))
+            ->addColumn((new ColumnEntity('email', $this->translator->translate('column_email')))
                 ->setEnableSearchGlobal(true)
             )
         ;
 
         $dataGridEntity
-            ->addMenu(new MenuEntity($this->translator->translate('Upravit'), 'edit'));
+            ->addMenu(new MenuEntity($this->translator->translate('menu_edit'), 'edit'));
 
         return $dataGridEntity;
     }

@@ -2,13 +2,13 @@
 
 {layout $layoutFile}
 
-{block h1}{_'Uživatelé'}{/block}
+{block h1}{_'header_users'}{/block}
 
 {block content}
 
     {control grid}
     {embed basicModal, 'form-new'}
-        {block title}{_'Nový uživatel'}{/block}
+        {block title}{_'header_newUser'}{/block}
         {block body}{embed basicForm, formNew}{/embed}{/block}
     {/embed}
 {/block}

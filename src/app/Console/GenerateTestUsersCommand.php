@@ -1,6 +1,6 @@
 <?php
 
-namespace Console;
+namespace App\Console;
 
 use App\Model\Enum\RoleEnum;
 use App\Model\Role;

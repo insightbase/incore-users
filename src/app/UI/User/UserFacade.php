@@ -35,10 +35,10 @@ readonly class UserFacade
 
     /**
      * @param UserEntity $user
-     * @param Form\FormEditData $values
+     * @param \UI\User\Form\FormEditData $values
      * @return void
      */
-    public function update(ActiveRow $user, Form\FormEditData $values):void
+    public function update(ActiveRow $user, \UI\User\Form\FormEditData $values):void
     {
         $user->update([
             'firstname' => $values->firstname,

@@ -42,7 +42,7 @@ final class UserPresenter extends Presenter
     protected function startup():void
     {
         parent::startup();
-        $this->submenuFactory->addMenu($this->translator->translate('menu_newUser'), $this->link('new'))
+        $this->submenuFactory->addMenu($this->translator->translate('menu_newUser'), 'new')
             ->setModalId('form-new')
             ->setIsPrimary(true);
     }

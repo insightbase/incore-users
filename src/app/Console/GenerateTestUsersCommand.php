@@ -14,33 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'user:generate-test-users', description: 'Generate test users')]
 class GenerateTestUsersCommand extends Command
 {
-    public function __construct(
-        private readonly User      $userModel,
-        private readonly Role      $roleModel,
-        private readonly Passwords $passwords,
-    )
-    {
-
-        parent::__construct();
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output): int
-    {
-        $role = $this->roleModel->findBySystemName(RoleEnum::ADMIN->value);
-
-        foreach($this->testUsers as $testUser){
-            $this->userModel->insert([
-                'firstname' => $testUser['firstName'],
-                'lastname' => $testUser['lastName'],
-                'email' => $testUser['email'],
-                'password' => $this->passwords->hash($testUser['email']),
-                'role_id' => $role->id,
-            ]);
-        }
-
-        return self::SUCCESS;
-    }
-
     /**
      * @var string[]
      */
@@ -74,7 +47,31 @@ class GenerateTestUsersCommand extends Command
         ['firstName' => 'Simona', 'lastName' => 'Benešová', 'email' => 'simona.benesova@example.com'],
         ['firstName' => 'Markéta', 'lastName' => 'Jelínková', 'email' => 'marketa.jelinkova@example.com'],
         ['firstName' => 'Radka', 'lastName' => 'Slavíková', 'email' => 'radka.slavikova@example.com'],
-        ['firstName' => 'Monika', 'lastName' => 'Pavlíková', 'email' => 'monika.pavlikova@example.com']
+        ['firstName' => 'Monika', 'lastName' => 'Pavlíková', 'email' => 'monika.pavlikova@example.com'],
     ];
 
+    public function __construct(
+        private readonly User $userModel,
+        private readonly Role $roleModel,
+        private readonly Passwords $passwords,
+    ) {
+        parent::__construct();
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $role = $this->roleModel->findBySystemName(RoleEnum::ADMIN->value);
+
+        foreach ($this->testUsers as $testUser) {
+            $this->userModel->insert([
+                'firstname' => $testUser['firstName'],
+                'lastname' => $testUser['lastName'],
+                'email' => $testUser['email'],
+                'password' => $this->passwords->hash($testUser['email']),
+                'role_id' => $role->id,
+            ]);
+        }
+
+        return self::SUCCESS;
+    }
 }

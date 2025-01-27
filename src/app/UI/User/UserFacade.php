@@ -9,18 +9,17 @@ use App\Model\User;
 use App\UI\User\Form\FormNewData;
 use Nette\Database\Table\ActiveRow;
 use Nette\Security\Passwords;
+use UI\User\Form\FormEditData;
 
 readonly class UserFacade
 {
     public function __construct(
-        private User      $userModel,
+        private User $userModel,
         private Passwords $passwords,
-        private Role      $roleModel,
-    )
-    {
-    }
+        private Role $roleModel,
+    ) {}
 
-    public function create(FormNewData $values):void
+    public function create(FormNewData $values): void
     {
         $role = $this->roleModel->findBySystemName(RoleEnum::ADMIN->value);
 
@@ -35,10 +34,8 @@ readonly class UserFacade
 
     /**
      * @param UserEntity $user
-     * @param \UI\User\Form\FormEditData $values
-     * @return void
      */
-    public function update(ActiveRow $user, \UI\User\Form\FormEditData $values):void
+    public function update(ActiveRow $user, FormEditData $values): void
     {
         $user->update([
             'firstname' => $values->firstname,

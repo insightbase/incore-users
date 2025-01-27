@@ -18,41 +18,27 @@ class FormFactory
 
     public function __construct(
         private readonly \App\UI\Accessory\Form\FormFactory $formFactory,
-        private readonly Translator                         $translator,
-        private readonly User                               $userModel,
-    )
-    {
-    }
+        private readonly Translator $translator,
+        private readonly User $userModel,
+    ) {}
 
-    public function validateEmail(TextInput $input):bool
+    public function validateEmail(TextInput $input): bool
     {
         $userId = null;
-        if($this->user !== null){
+        if (null !== $this->user) {
             $userId = $this->user->id;
         }
         $user = $this->userModel->findByEmail($input->getValue(), $userId);
-        return $user === null;
+
+        return null === $user;
     }
 
-    private function createBase():Form{
-        $form = $this->formFactory->create();
-
-        $form->addText('firstname', $this->translator->translate('input_firstname'))
-            ->setRequired();
-        $form->addText('lastname', $this->translator->translate('input_lastname'))
-            ->setRequired();
-        $form->addEmail('email', $this->translator->translate('input_email'))
-            ->addRule([$this, 'validateEmail'], $this->translator->translate('error_emailAlreadyExists'))
-            ->setRequired();
-
-        return $form;
-    }
-
-    public function createNew():Form
+    public function createNew(): Form
     {
         $form = $this->createBase();
         $form->addPassword('password', $this->translator->translate('input_password'))
-            ->setRequired();
+            ->setRequired()
+        ;
         $form->addSubmit('send', $this->translator->translate('submit_create'));
 
         return $form;
@@ -60,9 +46,8 @@ class FormFactory
 
     /**
      * @param UserEntity $userEntity
-     * @return Form
      */
-    public function createEdit(ActiveRow $userEntity):Form
+    public function createEdit(ActiveRow $userEntity): Form
     {
         $this->user = $userEntity;
 
@@ -74,6 +59,24 @@ class FormFactory
             'lastname' => $userEntity->lastname,
             'email' => $userEntity->email,
         ]);
+
+        return $form;
+    }
+
+    private function createBase(): Form
+    {
+        $form = $this->formFactory->create();
+
+        $form->addText('firstname', $this->translator->translate('input_firstname'))
+            ->setRequired()
+        ;
+        $form->addText('lastname', $this->translator->translate('input_lastname'))
+            ->setRequired()
+        ;
+        $form->addEmail('email', $this->translator->translate('input_email'))
+            ->addRule([$this, 'validateEmail'], $this->translator->translate('error_emailAlreadyExists'))
+            ->setRequired()
+        ;
 
         return $form;
     }

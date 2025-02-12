@@ -18,15 +18,5 @@
         "nette/application": "^3.2",
         "incore/core": "^0",
         "incore/datagrid": "^0"
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../incore-core"
-        },
-        {
-            "type": "path",
-            "url": "../incore-datagrid"
-        }
-    ]
+    }
 }

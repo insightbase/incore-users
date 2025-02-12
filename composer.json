@@ -17,7 +17,7 @@
         "nette/utils": "^4.0",
         "nette/application": "^3.2",
         "incore/core": "dev-master",
-        "incore/datagrid": "dev-master"
+        "incore/datagrid": "^0"
     },
     "repositories": [
         {

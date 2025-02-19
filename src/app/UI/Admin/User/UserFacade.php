@@ -1,12 +1,12 @@
 <?php
 
-namespace App\UI\User;
+namespace App\UI\Admin\User;
 
+use App\Model\Admin\Role;
+use App\Model\Admin\User;
 use App\Model\Entity\UserEntity;
 use App\Model\Enum\RoleEnum;
-use App\Model\Role;
-use App\Model\User;
-use App\UI\User\Form\FormNewData;
+use App\UI\Admin\User\Form\FormNewData;
 use Nette\Database\Table\ActiveRow;
 use Nette\Security\Passwords;
 use UI\User\Form\FormEditData;

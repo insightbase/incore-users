@@ -1,11 +1,11 @@
 <?php
 
-namespace App\UI\User\Form;
+namespace App\UI\Admin\User\Form;
 
 use App\Component\Translator\Translator;
+use App\Model\Admin\User;
 use App\Model\Entity\UserEntity;
-use App\Model\User;
-use App\UI\Accessory\Form\Form;
+use App\UI\Accessory\Admin\Form\Form;
 use Nette\Database\Table\ActiveRow;
 use Nette\Forms\Controls\TextInput;
 
@@ -17,9 +17,9 @@ class FormFactory
     private ?ActiveRow $user = null;
 
     public function __construct(
-        private readonly \App\UI\Accessory\Form\FormFactory $formFactory,
-        private readonly Translator $translator,
-        private readonly User $userModel,
+        private readonly \App\UI\Accessory\Admin\Form\FormFactory $formFactory,
+        private readonly Translator                               $translator,
+        private readonly User                                     $userModel,
     ) {}
 
     public function validateEmail(TextInput $input): bool

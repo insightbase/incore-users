@@ -2,9 +2,9 @@
 
 namespace App\Console;
 
+use App\Model\Admin\Role;
+use App\Model\Admin\User;
 use App\Model\Enum\RoleEnum;
-use App\Model\Role;
-use App\Model\User;
 use Nette\Security\Passwords;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UI\User\DataGrid;
+namespace App\UI\Admin\User\DataGrid;
 
 use App\Component\Datagrid\Entity\ColumnEntity;
 use App\Component\Datagrid\Entity\DataGridEntity;

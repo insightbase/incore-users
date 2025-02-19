@@ -1,19 +1,19 @@
 <?php
 
-namespace App\UI\User;
+namespace App\UI\Admin\User;
 
 use App\Component\Datagrid\DataGrid;
 use App\Component\Datagrid\DataGridFactory;
+use App\Model\Admin\User;
 use App\Model\Entity\UserEntity;
-use App\Model\User;
-use App\UI\Accessory\Form\Form;
-use App\UI\Accessory\PresenterTrait\RequireLoggedUserTrait;
-use App\UI\Accessory\PresenterTrait\StandardTemplateTrait;
-use App\UI\Accessory\Submenu\SubmenuFactory;
-use App\UI\User\DataGrid\DataGridEntityFactory;
-use App\UI\User\Form\FormEditData;
-use App\UI\User\Form\FormFactory;
-use App\UI\User\Form\FormNewData;
+use App\UI\Accessory\Admin\Form\Form;
+use App\UI\Accessory\Admin\PresenterTrait\RequireLoggedUserTrait;
+use App\UI\Accessory\Admin\PresenterTrait\StandardTemplateTrait;
+use App\UI\Accessory\Admin\Submenu\SubmenuFactory;
+use App\UI\Admin\User\DataGrid\DataGridEntityFactory;
+use App\UI\Admin\User\Form\FormEditData;
+use App\UI\Admin\User\Form\FormFactory;
+use App\UI\Admin\User\Form\FormNewData;
 use Nette\Application\UI\Presenter;
 use Nette\Database\Table\ActiveRow;
 

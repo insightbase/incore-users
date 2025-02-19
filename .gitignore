@@ -2,3 +2,4 @@ vendor
 .idea
 build
 docker-compose.yml
+composer.local.json

@@ -72,6 +72,9 @@ final class UserPresenter extends Presenter
             $this->flashMessage($this->translator->translate('flash_userCreated'));
             $this->redirect('default');
         };
+        $form->onError[] = function():void{
+            $this->redrawControl('formNew');
+        };
 
         return $form;
     }

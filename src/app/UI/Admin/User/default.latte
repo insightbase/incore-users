@@ -1,4 +1,4 @@
-{templateType App\UI\BaseTemplate}
+{templateType App\UI\Admin\BaseTemplate}
 
 {layout $layoutFile}
 
@@ -7,8 +7,13 @@
 {block content}
 
     {control grid}
+
     {embed basicModal, 'form-new'}
         {block title}{_'header_newUser'}{/block}
-        {block body}{embed basicForm, formNew}{/embed}{/block}
+        {block body}
+            {snippet 'formNew'}
+                {embed basicForm, formNew}{/embed}
+            {/snippet}
+        {/block}
     {/embed}
 {/block}

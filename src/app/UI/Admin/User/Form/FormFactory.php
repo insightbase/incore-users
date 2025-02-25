@@ -3,6 +3,7 @@
 namespace App\UI\Admin\User\Form;
 
 use App\Component\Translator\Translator;
+use App\Model\Admin\Role;
 use App\Model\Admin\User;
 use App\Model\Entity\UserEntity;
 use App\UI\Accessory\Admin\Form\Form;
@@ -20,6 +21,7 @@ class FormFactory
         private readonly \App\UI\Accessory\Admin\Form\FormFactory $formFactory,
         private readonly Translator                               $translator,
         private readonly User                                     $userModel,
+        private readonly Role                                     $roleModel,
     ) {}
 
     public function validateEmail(TextInput $input): bool
@@ -36,6 +38,7 @@ class FormFactory
     public function createNew(): Form
     {
         $form = $this->createBase();
+        $form->sendByAjax();
         $form->addPassword('password', $this->translator->translate('input_password'))
             ->setRequired()
         ;
@@ -77,6 +80,7 @@ class FormFactory
             ->addRule([$this, 'validateEmail'], $this->translator->translate('error_emailAlreadyExists'))
             ->setRequired()
         ;
+        $form->addSelect('role_id', $this->translator->translate('input_role'), $this->roleModel->getToSelect()->fetchPairs('id', 'name'));
 
         return $form;
     }

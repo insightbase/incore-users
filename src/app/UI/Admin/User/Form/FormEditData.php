@@ -7,4 +7,5 @@ class FormEditData
     public string $firstname;
     public string $lastname;
     public string $email;
+    public int $role_id;
 }

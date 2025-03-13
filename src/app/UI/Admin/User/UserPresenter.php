@@ -70,6 +70,7 @@ final class UserPresenter extends Presenter
         $form->onSuccess[] = function (Form $form, FormNewData $values): void {
             $this->userFacade->create($values);
             $this->flashMessage($this->translator->translate('flash_userCreated'));
+
             $this->redirect('default');
         };
         $form->onError[] = function():void{

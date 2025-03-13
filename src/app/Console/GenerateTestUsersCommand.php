@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateTestUsersCommand extends Command
 {
     /**
-     * @var string[]
+     * @var array<int, array<string, string>>
      */
     private $testUsers = [
         ['firstName' => 'Jan', 'lastName' => 'Novák', 'email' => 'jan.novak@example.com'],

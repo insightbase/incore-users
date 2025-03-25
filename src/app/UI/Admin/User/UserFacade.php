@@ -43,4 +43,14 @@ readonly class UserFacade
         ]);
         $this->logFacade->create(LogActionEnum::Updated, 'user', $user->id);
     }
+
+    /**
+     * @param UserEntity $user
+     * @param Form\ChangePasswordData $data
+     * @return void
+     */
+    public function changePassword(ActiveRow $user, Form\ChangePasswordData $data):void
+    {
+        $user->update(['password' => $this->passwords->hash($data->password)]);
+    }
 }

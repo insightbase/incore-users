@@ -11,6 +11,7 @@ use App\UI\Accessory\Admin\PresenterTrait\RequireLoggedUserTrait;
 use App\UI\Accessory\Admin\PresenterTrait\StandardTemplateTrait;
 use App\UI\Accessory\Admin\Submenu\SubmenuFactory;
 use App\UI\Admin\User\DataGrid\DataGridEntityFactory;
+use App\UI\Admin\User\Form\ChangePasswordData;
 use App\UI\Admin\User\Form\FormEditData;
 use App\UI\Admin\User\Form\FormFactory;
 use App\UI\Admin\User\Form\FormNewData;
@@ -36,6 +37,17 @@ final class UserPresenter extends Presenter
         private readonly SubmenuFactory $submenuFactory,
     ) {
         parent::__construct();
+    }
+
+    protected function createComponentFormChangePassword():Form
+    {
+        $form = $this->formFactory->createChangePassword();
+        $form->onSuccess[] = function(Form $form, ChangePasswordData $data):void{
+            $this->userFacade->changePassword($this->user, $data);
+            $this->flashMessage($this->translator->translate('flash_passwordChanged'));
+            $this->redirect('default');
+        };
+        return $form;
     }
 
     public function actionEdit(int $id): void

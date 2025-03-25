@@ -1,9 +1,13 @@
-{templateType App\UI\BaseTemplate}
+{templateType App\UI\Admin\BaseTemplate}
 
 {layout $layoutFile}
 
-{block h1}{_'Editace uživatele'}{/block}
+{block h1}{_'header_editUser'}{/block}
 
 {block content}
     {embed basicForm, formEdit}{/embed}
+    {if $presenter->getUser()->isInRole(App\Model\Enum\RoleEnum::SUPER_ADMIN->value)}
+        <h3>{_'header_changePassword'}</h3>
+        {embed basicForm, formChangePassword}{/embed}
+    {/if}
 {/block}

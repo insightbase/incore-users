@@ -24,6 +24,17 @@ class FormFactory
         private readonly Role                                     $roleModel,
     ) {}
 
+    public function createChangePassword():Form
+    {
+        $form = $this->formFactory->create();
+
+        $form->addPassword('password', $this->translator->translate('input_newPassword'))
+            ->setRequired();
+        $form->addSubmit('send', $this->translator->translate('input_set'));
+
+        return $form;
+    }
+
     public function validateEmail(TextInput $input): bool
     {
         $userId = null;

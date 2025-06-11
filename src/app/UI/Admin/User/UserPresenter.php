@@ -94,7 +94,7 @@ final class UserPresenter extends Presenter
 
     protected function createComponentGrid(): DataGrid
     {
-        return $this->dataGridFactory->create($this->userModel->getTable(), $this->dataGridEntityFactory->create());
+        return $this->dataGridFactory->create($this->userModel->getToGrid(), $this->dataGridEntityFactory->create());
     }
 
     private function exist(int $id): void

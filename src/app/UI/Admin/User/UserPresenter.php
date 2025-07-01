@@ -55,6 +55,19 @@ final class UserPresenter extends Presenter
         $this->exist($id);
     }
 
+    public function actionDelete(int $id): void
+    {
+        $this->exist($id);
+
+        try {
+            $this->userFacade->delete($this->user);
+            $this->flashMessage($this->translator->translate('flash_userDeleted'));
+        } catch (Exception\UserCannotByDeletedException $e) {
+            $this->flashMessage($this->translator->translate('flash_userCannotByDeleted'), 'error');
+        }
+        $this->redirect('default');
+    }
+
     protected function startup(): void
     {
         parent::startup();

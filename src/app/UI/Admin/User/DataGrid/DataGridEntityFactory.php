@@ -6,7 +6,6 @@ use App\Component\Datagrid\Entity\ColumnEntity;
 use App\Component\Datagrid\Entity\DataGridEntity;
 use App\Component\Datagrid\Entity\DeleteMenuEntity;
 use App\Component\Datagrid\Entity\MenuEntity;
-use App\Model\Enum\RoleEnum;
 use App\UI\Admin\User\UserFacade;
 use Nette\Database\Table\ActiveRow;
 use Nette\Localization\Translator;
@@ -32,6 +31,11 @@ readonly class DataGridEntityFactory
             ->addColumn(
                 (new ColumnEntity('email', $this->translator->translate('column_email')))
                     ->setEnableSearchGlobal(true)
+            )
+            ->addColumn(
+                (new ColumnEntity('name', $this->translator->translate('column_role'), true))
+                    ->setRef(['role'])
+                    ->setSortString(fn(): string => 'role.name')
             )
         ;
 

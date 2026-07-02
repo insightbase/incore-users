@@ -93,6 +93,8 @@ class FormFactory
         ;
         $form->addSelect('role_id', $this->translator->translate('input_role'), $this->roleModel->getToSelect()->fetchPairs('id', 'name'));
 
+        $form->applyMaxLengthFromEntity(\App\Model\DoctrineEntity\User::class);
+
         return $form;
     }
 }

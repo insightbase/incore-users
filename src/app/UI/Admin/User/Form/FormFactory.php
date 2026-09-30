@@ -72,6 +72,7 @@ class FormFactory
             'firstname' => $userEntity->firstname,
             'lastname' => $userEntity->lastname,
             'email' => $userEntity->email,
+            'dropcore_identity_token' => $userEntity->dropcore_identity_token,
         ]);
 
         return $form;
@@ -92,6 +93,9 @@ class FormFactory
             ->setRequired()
         ;
         $form->addSelect('role_id', $this->translator->translate('input_role'), $this->roleModel->getToSelect()->fetchPairs('id', 'name'));
+        $form->addText('dropcore_identity_token', $this->translator->translate('input_userDropCoreIdentityToken'))
+            ->setNullable()
+        ;
 
         $form->applyMaxLengthFromEntity(\App\Model\DoctrineEntity\User::class);
 

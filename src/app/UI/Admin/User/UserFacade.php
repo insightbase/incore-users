@@ -44,6 +44,7 @@ readonly class UserFacade
             'email' => $values->email,
             'password' => $this->passwords->hash($values->password),
             'role_id' => $values->role_id,
+            'dropcore_identity_token' => $values->dropcore_identity_token,
         ]);
         $this->logFacade->create(LogActionEnum::Created, 'user', $user->id);
     }
@@ -57,6 +58,7 @@ readonly class UserFacade
             'firstname' => $values->firstname,
             'lastname' => $values->lastname,
             'email' => $values->email,
+            'dropcore_identity_token' => $values->dropcore_identity_token,
         ]);
         $this->logFacade->create(LogActionEnum::Updated, 'user', $user->id);
     }

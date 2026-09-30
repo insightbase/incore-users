@@ -8,4 +8,5 @@ class FormEditData
     public string $lastname;
     public string $email;
     public int $role_id;
+    public ?string $dropcore_identity_token;
 }

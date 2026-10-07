@@ -8,6 +8,7 @@ use App\Component\Datagrid\Entity\DeleteMenuEntity;
 use App\Component\Datagrid\Entity\FilterEntity;
 use App\Component\Datagrid\Entity\MenuEntity;
 use App\Component\Datagrid\Enum\FilterTypeEnum;
+use App\Core\Admin\Impersonation\ImpersonationFacade;
 use App\Model\Admin\Role;
 use App\UI\Admin\User\UserFacade;
 use Nette\Database\Table\ActiveRow;
@@ -22,6 +23,7 @@ readonly class DataGridEntityFactory
         private User $userSecurity,
         private UserFacade $userFacade,
         private Role $roleModel,
+        private ImpersonationFacade $impersonationFacade,
     ) {}
 
     public function create(): DataGridEntity
@@ -59,6 +61,10 @@ readonly class DataGridEntityFactory
 
         $dataGridEntity
             ->addMenu(new MenuEntity($this->translator->translate('menu_edit'), 'edit'))
+            ->addMenu((new MenuEntity($this->translator->translate('menu_impersonate'), 'impersonate'))
+                ->setIcon('ki-filled ki-user')
+                ->setShowCallback(fn(ActiveRow $row): bool => $this->impersonationFacade->canImpersonate($row))
+            )
             ->addMenu(new DeleteMenuEntity($this->translator->translate('menu_delete'), 'delete')
                 ->setShowCallback(function(ActiveRow $row):bool{
                     return $this->userFacade->canByDeleted($row, $this->userSecurity);

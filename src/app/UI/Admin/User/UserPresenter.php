@@ -4,6 +4,7 @@ namespace App\UI\Admin\User;
 
 use App\Component\Datagrid\DataGrid;
 use App\Component\Datagrid\DataGridFactory;
+use App\Core\Admin\Impersonation\ImpersonationFacade;
 use App\Model\Admin\User;
 use App\Model\Entity\UserEntity;
 use App\UI\Accessory\Admin\Form\Form;
@@ -15,6 +16,7 @@ use App\UI\Admin\User\Form\ChangePasswordData;
 use App\UI\Admin\User\Form\FormEditData;
 use App\UI\Admin\User\Form\FormFactory;
 use App\UI\Admin\User\Form\FormNewData;
+use Nette\Application\ForbiddenRequestException;
 use Nette\Application\UI\Presenter;
 use Nette\Database\Table\ActiveRow;
 
@@ -35,6 +37,7 @@ final class UserPresenter extends Presenter
         private readonly FormFactory $formFactory,
         private readonly UserFacade $userFacade,
         private readonly SubmenuFactory $submenuFactory,
+        private readonly ImpersonationFacade $impersonationFacade,
     ) {
         parent::__construct();
     }
@@ -53,6 +56,17 @@ final class UserPresenter extends Presenter
     public function actionEdit(int $id): void
     {
         $this->exist($id);
+    }
+
+    public function actionImpersonate(int $id): void
+    {
+        // přihlášení jiným účtem nesmí jít vyvolat odkazem z cizího webu
+        if (!$this->getHttpRequest()->isSameSite()) {
+            throw new ForbiddenRequestException();
+        }
+        $this->impersonationFacade->start($id);
+        $this->flashMessage($this->translator->translate('flash_impersonationStarted'));
+        $this->redirect('Home:default');
     }
 
     public function actionDelete(int $id): void

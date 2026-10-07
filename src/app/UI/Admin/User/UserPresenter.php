@@ -18,6 +18,7 @@ use App\UI\Admin\User\Form\FormFactory;
 use App\UI\Admin\User\Form\FormNewData;
 use Nette\Application\ForbiddenRequestException;
 use Nette\Application\UI\Presenter;
+use Nette\Http\Request;
 use Nette\Database\Table\ActiveRow;
 
 final class UserPresenter extends Presenter
@@ -61,7 +62,8 @@ final class UserPresenter extends Presenter
     public function actionImpersonate(int $id): void
     {
         // přihlášení jiným účtem nesmí jít vyvolat odkazem z cizího webu
-        if (!$this->getHttpRequest()->isSameSite()) {
+        $httpRequest = $this->getHttpRequest();
+        if (!$httpRequest instanceof Request || !$httpRequest->isSameSite()) {
             throw new ForbiddenRequestException();
         }
         $this->impersonationFacade->start($id);

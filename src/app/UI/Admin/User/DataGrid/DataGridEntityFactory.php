@@ -10,6 +10,7 @@ use App\Component\Datagrid\Entity\MenuEntity;
 use App\Component\Datagrid\Enum\FilterTypeEnum;
 use App\Core\Admin\Impersonation\ImpersonationFacade;
 use App\Model\Admin\Role;
+use App\Model\Entity\UserEntity;
 use App\UI\Admin\User\UserFacade;
 use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\Selection;
@@ -63,7 +64,10 @@ readonly class DataGridEntityFactory
             ->addMenu(new MenuEntity($this->translator->translate('menu_edit'), 'edit'))
             ->addMenu((new MenuEntity($this->translator->translate('menu_impersonate'), 'impersonate'))
                 ->setIcon('ki-filled ki-user')
-                ->setShowCallback(fn(ActiveRow $row): bool => $this->impersonationFacade->canImpersonate($row))
+                ->setShowCallback(function (ActiveRow $row): bool {
+                    /** @var UserEntity $row */
+                    return $this->impersonationFacade->canImpersonate($row);
+                })
             )
             ->addMenu(new DeleteMenuEntity($this->translator->translate('menu_delete'), 'delete')
                 ->setShowCallback(function(ActiveRow $row):bool{
